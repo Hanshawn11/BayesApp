@@ -15,7 +15,12 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
+    df = pd.read_csv('spam.csv', encoding='latin-1')
+    df.drop(['Unnamed: 2', 'Unnamed: 3', 'Unnamed: 4'], axis=1, inplace=True)
+    df.rename(columns={'v1':'tag', 'v2':'message'}, inplace=True)
+    X = df['message']
     cv = CountVectorizer()
+    X = cv.fit_transform(X)
     nb = open('nb_spam_model.pkl', 'rb')
     clf = joblib.load(nb)
     if request.method == 'POST':

@@ -2,23 +2,31 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
+
 	<header>
 		<div class="container">
 		<div id="brandname">
-			ML app
-		</div>	
-		<h2>Spam Detector For SMS Message</h2>
+			ML App
 		</div>
-	</header>
-
-	<p style="color:blue; font-size:20; text-align; center;" ><b> Results for Comment </b></p>
-	<div class="results">
-	{% if prediction == 1 %}
-	<h2 style="color: blue;">Not a Spam (It is a ham)</h2>
-	{% endif %}
+		<h3>Spam Detector For SMS Messages</h3>
+		
 	</div>
+	</header>
+	<h2>
+		<p style="color:plum;font-size:65;text-align: center;"><b>检测结果</b></p>
+	</h2>	
+	<div class="results">
+
+	{% if prediction == 1 %}
+	<h2 style="color:red;">垃圾邮件</h2>
+	{% elif prediction == 0 %}
+	<h2 style="color:green;">不是垃圾邮件</h2>
+	{% endif %}
+
+	</div>
+
 </body>
 </html>
